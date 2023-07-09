@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detective Loupe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <meta name="generator" content="Construct 3">
+
+    <link rel="manifest" href="appmanifest.json">
+    <link rel="apple-touch-icon" sizes="128x128" href="icons/icon-128.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/icon-256.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
+    <link rel="icon" type="image/png" href="icons/icon-512.png">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="//game-cdn.poki.com/scripts/v2/poki-sdk.js"></script>
+    <script src="poki_sitelock.js"></script>
+    <!-- Ask Poki team to send you this code -->
+</head>
+
+<body>
+    <div id="fb-root"></div>
+
+    <script>
+        // Initialize the Poki ADS SDK
+        // Should be called at, or before, the initialization of your game
+        PokiSDK.init().then(function() {
+            console.log("PokiSDK initialized!");
+        }).catch(function() {
+            console.log("Ad block detected");
+        });
+        PokiSDK.setDebug(false); // set to false for production!
+    </script>
+    <noscript>
+		<div id="notSupportedWrap">
+			<h2 id="notSupportedTitle">This content requires JavaScript</h2>
+			<p class="notSupportedMessage">JavaScript appears to be disabled. Please enable it to view this content.</p>
+		</div>
+	</noscript>
+    <script src="scripts/supportcheck.js"></script>
+    <script src="scripts/offlineclient.js" type="module"></script>
+    <script src="scripts/main.js" type="module"></script>
+    <script src="scripts/register-sw.js" type="module"></script>
+    <script>
+        /*
+        	function changeSoundState(soundState) {
+        			if (c2_callFunction) c2_callFunction("updateSound",[soundState]);
+        			console.log("changeSoundState");
+        		}*/
+
+        function afterAd() {
+            console.log('ad is over');
+            // call the function within C2 to handle after-ad:
+            if (c2_callFunction) c2_callFunction("afterAd", [0]);
+        }
+        /*
+        function gameStart() {
+        	PokiSDK.gameplayStart();
+        	 showAd();
+        	}*/
+        /*
+        function nextLevel() {
+        	PokiSDK.happyTime(0.5);
+        	}*/
+        /*
+        function backToMenu() {
+        	 showAd();
+        	PokiSDK.gameplayStop();
+        	}*/
+        function showAd() {
+            console.log('Begin of commercial break');
+            //PokiSDK.gameplayStop();	
+            /*			
+            			PokiSDK.commercialBreak()
+                            .then(function () {
+                                console.log('End of commercial break');
+            					afterAd();
+                            });
+            			*/
+            PokiSDK.commercialBreak().then(
+                () => {
+                    console.log("Commercial break finished, proceeding to game");
+                    //PokiSDK.gameplayStart();
+                    // your code to continue to game
+                    afterAd();
+                }
+            );
+        }
+
+        function preloadRewardAd() {
+            console.log('Preload reward ad - not used');
+        }
+
+        function showRewardAd() {
+
+            PokiSDK.rewardedBreak().then(
+                (success) => {
+                    if (success) {
+                        // video was displayed, give reward
+                        if (c2_callFunction) c2_callFunction("rewardAdFinishedOk", [0]);
+                    } else {
+                        // video not displayed, should probably not give reward
+                        if (c2_callFunction) c2_callFunction("rewardAdError", [0]);
+                    }
+
+                    //PokiSDK.gameplayStart();
+                    // your code to continue to game
+
+                }
+            );
+        }
+    </script>
+    <script>
+        // sprecava skrolovanje ekrana koriscenjem tastature
+        window.addEventListener('keydown', ev => {
+            if (['ArrowDown', 'ArrowUp', ' '].includes(ev.key)) {
+                ev.preventDefault();
+            }
+        });
+        window.addEventListener('wheel', ev => ev.preventDefault(), {
+            passive: false
+        });
+    </script>
+</body>
+
+</html>
