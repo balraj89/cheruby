@@ -1285,8 +1285,7 @@
                         }))
                     }
                     startLongPlayAdTimer() {
-						return;
-                        d.default.adManager.forceLongPlayStart(!0)
+                        //d.default.adManager.forceLongPlayStart(!0)
                     }
                     stopLongPlayAdTimer() {
                         d.default.adManager.forceLongPlayStart(!1)
@@ -1722,10 +1721,10 @@
                         }))
                     }
                     startLongPlayAdTimer() {
-						return;
-                        !this.isLongPlayTimerRunning && this.isGameOrLevelPlaying && (console.log("LONG PLAY TIMER STARTED"), this.isLongPlayTimerRunning = !0, this.longPlayTimerID && window.clearInterval(this.longPlayTimerID), this._longPlayTimeLeft = i.default.config.adsConfig.longGameplayCooldownMS, this.longPlayTimerID = window.setInterval((() => {
-                            this._longPlayTimeLeft -= 1e3, this.emit(l.AdTimerEvent.LONGPLAY_TICK), this._longPlayTimeLeft <= 0 ? (window.clearInterval(this.longPlayTimerID), this.onLongPlayTimerEnd()) : this._longPlayTimeLeft <= this.adRules.adWarningDuration && (this._longPlayTimeLeft == this.adRules.adWarningDuration && this.emit(l.AdTimerEvent.LONGPLAY_WARN), console.log("warning :: " + this._longPlayTimeLeft), this.emit(l.AdTimerEvent.LONGPLAY_WARN_TICK))
-                        }), 1e3), this.emit(l.AdTimerEvent.LONGPLAY_TICKER_START))
+						
+                      //  !this.isLongPlayTimerRunning && this.isGameOrLevelPlaying && (console.log("LONG PLAY TIMER STARTED"), this.isLongPlayTimerRunning = !0, this.longPlayTimerID && window.clearInterval(this.longPlayTimerID), this._longPlayTimeLeft = i.default.config.adsConfig.longGameplayCooldownMS, this.longPlayTimerID = window.setInterval((() => {
+                        //    this._longPlayTimeLeft -= 1e3, this.emit(l.AdTimerEvent.LONGPLAY_TICK), this._longPlayTimeLeft <= 0 ? (window.clearInterval(this.longPlayTimerID), this.onLongPlayTimerEnd()) : this._longPlayTimeLeft <= this.adRules.adWarningDuration && (this._longPlayTimeLeft == this.adRules.adWarningDuration && this.emit(l.AdTimerEvent.LONGPLAY_WARN), console.log("warning :: " + this._longPlayTimeLeft), this.emit(l.AdTimerEvent.LONGPLAY_WARN_TICK))
+                        //}), 1e3), this.emit(l.AdTimerEvent.LONGPLAY_TICKER_START))
                     }
                     stopLongPlayAdTimer() {
                         console.log("LONG PLAY TIMER STOPPED"), window.clearTimeout(this.longPlayTimerID), this.isLongPlayTimerRunning = !1, this.emit(l.AdTimerEvent.LONGPLAY_TICKER_STOP)
