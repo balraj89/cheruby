@@ -103,19 +103,7 @@
             return isIncluded || isIpad;
         };
 
-        if (isMobileDevice()) {
-            var setOrientation = () => {
-                document.getElementById("orientation").style.display = (window.orientation == 0) ? "none" : "block";
-            }
-
-            window.addEventListener("orientationchange", () => {
-                setOrientation();
-            });
-            setOrientation();
-            window.setTimeout(() => {
-                setOrientation();
-            }, 1000)
-        }
+        
     </script>
 </body>
 
