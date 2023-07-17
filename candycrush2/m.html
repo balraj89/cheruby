@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Garden Tales 3</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Phaser App">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.01">
+    <meta name="screen-orientation" content="portrait" />
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
+    <style type="text/css">
+        #lay1 {
+            margin: 0 auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 110%;
+            background-image: url('http://upload.wikimedia.org/wikipedia/commons/a/ad/YouTube_loading_symbol_3_%28transparent%29.gif');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+			background: linear-gradient(to bottom, #33ccff 0%, #0033cc 100%);
+            z-index: 999;
+        }
+		        #lay2 {
+            margin: auto auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 10%;
+            height: 10%;
+            background-image: url('http://upload.wikimedia.org/wikipedia/commons/a/ad/YouTube_loading_symbol_3_%28transparent%29.gif');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 999;
+        }
+    </style>
+
+
+    <!-- production -->
+    <script>
+        window.jsInitTime = Date.now(); // set earliest javascript execution time
+    </script>
+</head>
+
+<body>
+ 
+    <div id="gameFontPreload" class="unselectable">
+        <div style="font-family: Lobster" class='fontPreload'>.</div>
+        <script src="js/ua-parser.min.js"></script>
+        <script src="js/custom-phaser.min.js"></script>
+        <script src="js/phaser-debug.js"></script>
+        <script src="js/phaser-nineslice-softgames.js"></script>
+        <script id="lzutf8" src="js/lzutf8.min.js"></script>
+        <script src="js/game.js"></script>
+        <script src="lib/AzerionWrapper_v2.5.5.js"></script>
+    </div>
+
+    <script>
+        window.onWrapperReady = () => {
+            window._ = _; // create global ref for lodash
+
+            if (window.G != undefined) {
+                initGame();
+                return;
+            }
+
+            var iID = setInterval(() => {
+                if (G) {
+                    initGame();
+                    clearInterval(iID);
+                }
+            }, 200);
+        };
+    </script>
+    <script>
+        function isMobileDevice() {
+            const toMatch = [
+                /Android/i,
+                /webOS/i,
+                /iPhone/i,
+                /iPad/i,
+                /iPod/i,
+                /BlackBerry/i,
+                /Windows Phone/i,
+                /SamsungBrowser/i
+            ];
+            var isIncluded = toMatch.some((toMatchItem) => {
+                return navigator.userAgent.match(toMatchItem);
+            });
+            var isIpad = /Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1;
+
+            return isIncluded || isIpad;
+        };
+
+	    if (isMobileDevice()) {
+            var setOrientation = () => {
+                document.getElementById("orientation").style.display = (window.orientation == 0) ? "none" : "block";
+            }
+
+            window.addEventListener("orientationchange", () => {
+                setOrientation();
+            });
+            setOrientation();
+            window.setTimeout(() => {
+                setOrientation();
+            }, 1000)
+        }
+        
+    </script>
+</body>
+
+</html>
