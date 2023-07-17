@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="Phaser App">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.01">
-
+    <meta name="screen-orientation" content="portrait" />
     <link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
     <style type="text/css">
         #lay1 {
@@ -103,6 +103,19 @@
             return isIncluded || isIpad;
         };
 
+	    if (isMobileDevice()) {
+            var setOrientation = () => {
+                document.getElementById("orientation").style.display = (window.orientation == 0) ? "none" : "block";
+            }
+
+            window.addEventListener("orientationchange", () => {
+                setOrientation();
+            });
+            setOrientation();
+            window.setTimeout(() => {
+                setOrientation();
+            }, 1000)
+        }
         
     </script>
 </body>
