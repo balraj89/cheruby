@@ -1,11 +1,10 @@
 body {
     margin: 0px 0px 360px 0px;
     /* the extra 1px allows the iOS inner/outer check to work */
-    background-color: #020100;
+    background-color: #33ccff;
     overflow: hidden;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background:linear-gradient(to bottom, #33ccff 0%, #0033cc 100%);
 }
 
 body.initialized {
